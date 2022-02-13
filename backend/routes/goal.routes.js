@@ -1,4 +1,5 @@
 const { Router } = require('express');
+
 const router = Router();
 
 const {
@@ -7,7 +8,9 @@ const {
 	updateGoal,
 	deleteGoal
 } = require('../controllers/goal.controllers');
+const { protect } = require('../middleware/authMiddleware');
 
+router.use(protect);
 // Different way of writing code by chaining similiar routes.
 // I was today years old when I found out you can do this. 2-7-2022
 router.route('/').get(getGoals).post(setGoal);
